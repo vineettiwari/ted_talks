@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="panel">
+    <%= form_tag "/sessions" do %>
+      <%= text_field_tag 'username', '', placeholder: 'Username' %>
+      <%= text_field_tag 'password', '', type: 'password', placeholder: 'Password' %>
+      <%= submit_tag %>
+    <% end %>
+  </div>
+</div>

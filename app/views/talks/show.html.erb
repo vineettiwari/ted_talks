@@ -1,0 +1,54 @@
+<div class="centered">
+  <h3 class="talk-title"><%= @talk.title %></h3>
+</div>
+<div class="well">
+  <ul>
+    <li><%= @talk.body%></li>
+  </ul>
+<br>
+</div>
+<%= link_to "Back", talks_path, class: "btn btn-sm btn-primary back-but" %>
+<%= link_to "Edit", edit_talk_path, class: "btn btn-sm btn-primary back-but" %>
+<%= link_to "Delete", talk_path(@talk), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-danger back-but" %>
+<br>
+<%# if user_signed_in? && current_user.has_liked?(@talk) %>
+  <!-- This should be refactored to a method inside a model -->
+  <%# @like = Like.where(question_id: @question.id, user_id: current_user.id).first %>
+  <%# @like = current_user.likes.find_by_talk_id(@talk) %>
+  <%#= link_to "UnLike", talk_like_path(@talk, @like), class: "btn btn-danger", method: :delete %>
+<%# else %>
+  <%#= link_to "Like", talk_likes_path(@talk), class: "btn btn-info", method: :post %>
+<%# end %>
+
+<div class="comments-form">
+  <%= form_for [@talk, @comment] do |c| %>
+    <div class="form-group">
+        <%= c.label :Comment, class: "label-comment-form" %>
+        <%= c.text_area :body, class: "form-control" %>
+   <!--  <div class="clearfix"></div>
+    <div class= "col-md-5">
+      <br>
+      <div class="form-group">
+        <%#= t.label :body %>
+        <%#= t.text_area :body, class: "form-control" %>
+      </div> -->
+      <br>
+      <%= c.submit class: "btn btn-sm btn-primary back-but" %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <% @talk.comments.each do |x| %>
+    <div class="well">
+    <p><%= x.body %></p>
+    </div>
+    <%= link_to "Delete", talk_comment_path(@talk, x), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-danger back-but" %>
+    <%#= link_to "Like", talk_comment_path(@talk, x), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-danger back-but" %>
+  <% end %>
+</div>
+
+
+
+
+
+

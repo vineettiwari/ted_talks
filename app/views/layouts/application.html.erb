@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TedTalks</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if logged_in? %>
+    <%= link_to 'Log out', logout_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Log in', new_session_path %>
+    <%= link_to 'Sign up', new_user_path %>
+  <% end %>
+  <div class= "container-fluid">
+    <%= yield %>
+  </div>
+</body>
+</html>

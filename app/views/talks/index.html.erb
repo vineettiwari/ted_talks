@@ -1,0 +1,12 @@
+<br>
+<div class="centered">
+<h1>Welcome To Ted Talks</h1>
+</div>
+<%= link_to "Creat a Talk", new_talk_path, class: "btn btn-sm btn-primary back-but" %>
+
+<% @talks.each do |x| %>
+  <div class="well">
+  <h3><%= link_to x.title, x %></h3>
+  <p><%= x.body %></p>
+  </div>
+<% end %>
